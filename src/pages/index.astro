@@ -1,0 +1,99 @@
+---
+import Base from "../layouts/Base.astro";
+import { SITE, href } from "../lib/site";
+
+const providers = [
+  "Anthropic", "OpenAI", "Gemini", "Groq", "xAI",
+  "DeepSeek", "Together", "Fireworks", "Cohere", "Ollama",
+];
+
+const features = [
+  {
+    title: "You own the stack",
+    body: "Bring your own API key (stored in the OS keychain), or run fully offline against local Ollama. No middleman server, ever.",
+  },
+  {
+    title: "10+ providers, one app",
+    body: "Switch models live across Anthropic, OpenAI, Gemini, Groq, xAI, DeepSeek and more. Tune generation params globally or per provider.",
+  },
+  {
+    title: "Real tools, with consent",
+    body: "Read, write, search and edit files; run shell commands; fetch the web; parse PDFs and Office docs — every file action is permission-gated.",
+  },
+  {
+    title: "Artifacts, not just chat",
+    body: "Answers render as charts, tables, metrics and documents — inline or on a side canvas. Pin the ones worth keeping.",
+  },
+  {
+    title: "Sessions that survive",
+    body: "SQLite-backed, crash-safe and resumable, with automatic context summarization for long conversations.",
+  },
+  {
+    title: "Also a CLI",
+    body: "The same engine runs in your terminal for one-shot and interactive use. Scriptable, fast, local.",
+  },
+];
+---
+
+<Base>
+  <!-- Hero -->
+  <section class="mx-auto max-w-5xl px-5 pt-20 pb-16 text-center">
+    <span class="inline-block rounded-full border border-line bg-ink-2 px-3 py-1 text-xs font-medium text-white/60">
+      v1.0.0 — early, unsigned release
+    </span>
+    <h1 class="mx-auto mt-6 max-w-3xl text-balance text-5xl font-semibold leading-[1.05] tracking-tight sm:text-6xl">
+      A local-first AI workspace<br />for your desktop.
+    </h1>
+    <p class="mx-auto mt-5 max-w-2xl text-pretty text-lg text-white/60">
+      {SITE.description}
+    </p>
+    <div class="mt-8 flex items-center justify-center gap-3">
+      <a
+        href={href("/download")}
+        class="rounded-xl bg-accent px-5 py-3 font-medium text-white shadow-lg shadow-accent/20 transition-transform hover:-translate-y-0.5"
+      >
+        Download for your OS
+      </a>
+      <a
+        href={SITE.repo}
+        target="_blank"
+        rel="noopener"
+        class="rounded-xl border border-line bg-ink-2 px-5 py-3 font-medium text-white/80 hover:text-white"
+      >
+        View on GitHub
+      </a>
+    </div>
+    <p class="mt-4 text-xs text-white/40">macOS · Windows · Linux — unsigned builds, install in seconds.</p>
+
+    <!-- Provider strip -->
+    <div class="mt-14 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-white/35">
+      {providers.map((p) => <span>{p}</span>)}
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section id="features" class="mx-auto max-w-5xl px-5 py-12">
+    <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      {features.map((f) => (
+        <div class="rounded-2xl border border-line bg-ink-2/60 p-6 transition-colors hover:border-accent/40">
+          <h3 class="text-base font-semibold tracking-tight">{f.title}</h3>
+          <p class="mt-2 text-sm leading-relaxed text-white/55">{f.body}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- Privacy band -->
+  <section class="mx-auto max-w-5xl px-5 py-12">
+    <div class="rounded-2xl border border-line bg-gradient-to-br from-accent/10 to-transparent p-8 sm:p-10">
+      <h2 class="max-w-2xl text-2xl font-semibold tracking-tight">Private by design.</h2>
+      <p class="mt-3 max-w-2xl text-white/60">
+        zanto runs on your machine and talks directly to the model provider you choose —
+        or to a model running locally. Your files, keys and conversations stay with you.
+      </p>
+      <a href={href("/download")} class="mt-6 inline-block rounded-lg bg-white px-4 py-2 font-medium text-ink hover:bg-white/90">
+        Get started →
+      </a>
+    </div>
+  </section>
+</Base>

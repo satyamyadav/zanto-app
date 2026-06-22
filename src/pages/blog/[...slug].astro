@@ -1,0 +1,35 @@
+---
+import Base from "../../layouts/Base.astro";
+import { getCollection, render } from "astro:content";
+import { href } from "../../lib/site";
+
+export async function getStaticPaths() {
+  const posts = await getCollection("blog");
+  return posts.map((post) => ({ params: { slug: post.id }, props: { post } }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+const fmt = (d: Date) =>
+  d.toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" });
+---
+
+<Base title={post.data.title} description={post.data.description}>
+  <article class="mx-auto max-w-2xl px-5 pt-20 pb-10">
+    <a href={href("/blog")} class="text-sm text-white/50 hover:text-white">← Blog</a>
+    <h1 class="mt-4 text-4xl font-semibold tracking-tight">{post.data.title}</h1>
+    <p class="mt-2 text-sm text-white/40">{fmt(post.data.date)} · {post.data.author}</p>
+    <div
+      class="prose-zanto mt-8 max-w-none text-white/75 leading-relaxed
+             [&_a]:text-accent [&_a:hover]:underline
+             [&_h2]:mt-10 [&_h2]:mb-3 [&_h2]:text-2xl [&_h2]:font-semibold [&_h2]:text-white
+             [&_h3]:mt-8 [&_h3]:mb-2 [&_h3]:text-lg [&_h3]:font-semibold [&_h3]:text-white
+             [&_p]:my-4 [&_ul]:my-4 [&_ul]:list-disc [&_ul]:pl-6 [&_li]:my-1
+             [&_code]:rounded [&_code]:bg-ink-2 [&_code]:px-1.5 [&_code]:py-0.5 [&_code]:text-sm [&_code]:text-accent-2
+             [&_pre]:my-5 [&_pre]:overflow-x-auto [&_pre]:rounded-xl [&_pre]:border [&_pre]:border-line [&_pre]:bg-ink [&_pre]:p-4
+             [&_strong]:text-white"
+    >
+      <Content />
+    </div>
+  </article>
+</Base>
