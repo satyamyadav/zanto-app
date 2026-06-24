@@ -1,6 +1,7 @@
 // @ts-check
 import { defineConfig } from "astro/config";
 import tailwindcss from "@tailwindcss/vite";
+import sitemap from "@astrojs/sitemap";
 
 // Dedicated project repo → served at https://<user>.github.io/zanto-site/.
 // When you move to a custom domain (e.g. https://zanto.app):
@@ -10,6 +11,7 @@ import tailwindcss from "@tailwindcss/vite";
 export default defineConfig({
   site: "https://satyamyadav.github.io",
   base: "/zanto-site",
+  integrations: [sitemap()],
   vite: {
     plugins: [tailwindcss()],
   },
