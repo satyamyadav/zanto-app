@@ -2,10 +2,10 @@
 
 export const SITE = {
   name: "zanto",
-  tagline: "A local-first AI workspace for your desktop.",
+  tagline: "A private, local-first AI workspace for your desktop.",
   description:
-    "Bring your own model and keys; your files never leave your machine. " +
-    "10+ providers, consented file/shell/web tools, and answers rendered as charts, tables, and documents.",
+    "Private, local-first AI for your desktop. Bring your own model — or run fully offline with Ollama. " +
+    "It works your files, runs tools and renders charts, with focused apps like personal finance. Nothing leaves your machine.",
   repo: "https://github.com/satyamyadav/zanto-rust",
   releasesLatest: "https://github.com/satyamyadav/zanto-rust/releases/latest",
   releases: "https://github.com/satyamyadav/zanto-rust/releases",
