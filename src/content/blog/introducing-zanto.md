@@ -25,6 +25,24 @@ charts, tables, and documents.
 The whole thing runs on your machine and talks **directly** to whichever model
 you pick. No zanto account, no relay, no telemetry.
 
+```
+            YOUR MACHINE                         │   ELSEWHERE
+                                                 │
+   ┌─────────────────────────────────┐          │
+   │            zanto                 │          │
+   │  ┌───────────────────────────┐  │          │
+   │  │  chat · tools · artifacts │  │   prompt  │   ┌──────────────────┐
+   │  │  permissions · sessions   │──┼───────────┼──▶│  cloud provider  │
+   │  └───────────────────────────┘  │  (the one │   │ OpenAI/Anthropic │
+   │      │            │             │  you pick)│   │  /Gemini/…       │
+   │      ▼            ▼             │          │   └──────────────────┘
+   │  your files   OS keychain      │   …or stays fully local:
+   │  (with consent)  (your keys)   │──────────────▶  local Ollama
+   └─────────────────────────────────┘          │   (nothing leaves)
+                                                 │
+   files · keys · history never leave this box   │
+```
+
 - **You own the stack.** Your API key lives in the OS keychain (or an env var).
   Prefer fully offline? Point zanto at local **Ollama** and nothing leaves your
   laptop.
@@ -49,6 +67,19 @@ files on your machine that an assistant can reason about, on your terms.
 
 That's the bet behind zanto: a privacy-first base that real apps can stand on.
 Personal Finance is the first; it won't be the last.
+
+```
+   ┌────────────┐  ┌──────────────────┐  ┌────────────┐
+   │ Assistant  │  │ Personal Finance │  │    CLI     │   ← apps
+   └─────┬──────┘  └────────┬─────────┘  └─────┬──────┘
+         │                  │                  │
+         └──────────────────┼──────────────────┘
+                            ▼
+   ┌─────────────────────────────────────────────────┐
+   │              zanto engine  (Rust)                │   ← one shared,
+   │  models · tools · permissions · sessions · store │     local-first core
+   └─────────────────────────────────────────────────┘
+```
 
 ## Why "private" actually means something here
 
