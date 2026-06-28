@@ -8,7 +8,7 @@ Pages.
 
 ```bash
 pnpm install
-pnpm dev          # http://localhost:4321/zanto-site
+pnpm dev          # http://localhost:4321/zanto-app
 pnpm build        # static output in dist/
 pnpm preview
 ```
@@ -32,8 +32,8 @@ src/
 `.github/workflows/deploy.yml` builds and publishes on push to `main`.
 **One-time setup:** repo Settings → Pages → Source → **GitHub Actions**.
 
-The site is configured for a project page at `https://<user>.github.io/zanto-site`
-(`base: "/zanto-site"` in `astro.config.mjs`). For a custom domain: set `site` to
+The site is configured for a project page at `https://<user>.github.io/zanto-app`
+(`base: "/zanto-app"` in `astro.config.mjs`). For a custom domain: set `site` to
 the domain, drop `base`, and add `public/CNAME`.
 
 ## TODO before launch
