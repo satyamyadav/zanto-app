@@ -2,24 +2,34 @@
 import Base from "../layouts/Base.astro";
 import { SITE } from "../lib/site";
 
+// Monochrome line glyphs (currentColor) — generic OS marks, no brand logos.
+const icons = {
+  apple:
+    '<svg viewBox="0 0 24 24" fill="currentColor" class="size-5"><path d="M16.36 12.78c-.02-2.06 1.68-3.05 1.76-3.1-0.96-1.4-2.46-1.6-2.99-1.62-1.27-.13-2.48.75-3.12.75-.64 0-1.64-.73-2.7-.71-1.39.02-2.67.81-3.38 2.05-1.44 2.5-.37 6.2 1.04 8.23.69 1 1.5 2.12 2.57 2.08 1.03-.04 1.42-.67 2.66-.67 1.24 0 1.59.67 2.68.65 1.11-.02 1.81-1.02 2.49-2.02.78-1.16 1.1-2.28 1.12-2.34-.02-.01-2.15-.83-2.17-3.28zM14.3 6.6c.56-.69.94-1.64.83-2.6-.81.03-1.79.54-2.37 1.22-.52.6-.98 1.57-.86 2.5.9.07 1.83-.46 2.4-1.12z"/></svg>',
+  windows:
+    '<svg viewBox="0 0 24 24" fill="currentColor" class="size-5"><path d="M3 5.6 10.2 4.6v6.9H3V5.6zm0 12.8 7.2 1v-6.8H3v5.8zm8.1 1.1L21 21v-8.3h-9.9v6.8zm0-15L21 3v8.3h-9.9V4.5z"/></svg>',
+  linux:
+    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" class="size-5"><path d="M9 4.5c-1 .8-1.3 2-1.2 3.4.1 1.2-.4 2-1.1 3.2-.8 1.3-1.7 2.4-1.7 3.9 0 1.6 1.3 2.5 3 2.8M15 4.5c1 .8 1.3 2 1.2 3.4-.1 1.2.4 2 1.1 3.2.8 1.3 1.7 2.4 1.7 3.9 0 1.6-1.3 2.5-3 2.8"/><path d="M8.4 17.8c.6 1 1.9 1.7 3.6 1.7s3-.7 3.6-1.7"/><circle cx="10.2" cy="9.3" r=".6" fill="currentColor"/><circle cx="13.8" cy="9.3" r=".6" fill="currentColor"/><path d="M11 11.2c.4.5 1.6.5 2 0"/></svg>',
+};
+
 const platforms = [
   {
     os: "macOS",
-    icon: "",
+    icon: icons.apple,
     artifact: ".dmg — universal (Apple Silicon + Intel)",
-    note: "Right-click the app → Open the first time (unsigned). Or run:",
-    cmd: "xattr -dr com.apple.quarantine /Applications/zanto.app",
+    note: "Right-click the app → Open → Open the first time (ad-hoc signed — no Terminal needed).",
+    cmd: null,
   },
   {
     os: "Windows",
-    icon: "⊞",
+    icon: icons.windows,
     artifact: ".msi / .exe (NSIS)",
     note: "SmartScreen will warn (unsigned): click More info → Run anyway.",
     cmd: null,
   },
   {
     os: "Linux",
-    icon: "🐧",
+    icon: icons.linux,
     artifact: ".AppImage / .deb",
     note: "Make the AppImage executable and run it, or install the .deb:",
     cmd: "chmod +x zanto_*.AppImage   #  or:  sudo dpkg -i zanto_*.deb",
@@ -49,7 +59,7 @@ const platforms = [
         <div class="rounded-2xl border border-line bg-ink-2/60 p-6">
           <div class="flex items-center justify-between">
             <h2 class="flex items-center gap-2 text-lg font-semibold">
-              <span class="text-white/50">{p.icon}</span>{p.os}
+              <span class="text-white/55" set:html={p.icon} />{p.os}
             </h2>
             <a
               href={SITE.releasesLatest}
@@ -72,8 +82,10 @@ const platforms = [
     <div class="mt-8 rounded-2xl border border-line bg-ink-2/40 p-6 text-sm text-white/55">
       <h3 class="font-semibold text-white/80">Why the security prompts?</h3>
       <p class="mt-2">
-        v1 builds aren’t code-signed or notarized yet, so macOS Gatekeeper and Windows
-        SmartScreen flag an “unknown developer.” Signing is the top item after launch.
+        The macOS build is ad-hoc signed, so it opens with a one-time right-click → Open —
+        no Terminal command. It isn’t notarized yet, and Windows isn’t signed yet, so
+        SmartScreen still flags an “unknown developer.” Developer-ID signing and
+        notarization are the top item after launch.
       </p>
       <h3 class="mt-4 font-semibold text-white/80">First run</h3>
       <p class="mt-2">
