@@ -1,28 +1,29 @@
 ---
-title: "Introducing zanto — a local-first AI workspace"
-description: "Bring your own model and keys, give an assistant consented access to your files, and get answers as real artifacts. zanto v1 is here for macOS, Windows, and Linux."
+title: "Introducing zanto — a private platform for AI apps you run yourself"
+description: "Private, local-first AI for your desktop. Bring your own model — or run fully offline with Ollama. zanto works your files, runs tools, renders charts, and hosts focused apps like Personal Finance. Nothing leaves your machine."
 date: 2026-06-22
 author: "Satyam Yadav"
 ---
 
-I wanted an AI assistant that lived on my machine, used the models *I* pay for,
-and could actually touch my files — without shipping any of it through someone
-else's server. I couldn't find one that did all three the way I wanted, so I
-built **zanto**.
+Most AI tools are someone else's server with a chat box on top. Your prompts,
+your files, your keys — all of it round-trips through infrastructure you don't
+control. I wanted the opposite: an assistant that lives on *my* machine, uses the
+models *I* pay for, and can actually touch my files without shipping any of it
+elsewhere. I couldn't find one that did all three, so I built **zanto**.
 
-Today it's at **v1.0.0**, with downloads for macOS, Windows, and Linux.
+zanto isn't just a local chat app. It's a **private platform for apps** — a
+shared, local-first engine that powers a general assistant *and* focused
+micro-apps on top of it. It's in early release now for macOS, Windows, and Linux.
 
-## What it is
+## The engine
 
-zanto is a local-first AI workspace: a desktop app (and a CLI) built in Rust and
-Tauri. You point it at a provider key — or a model running locally — and it
-becomes an assistant that can read and edit your files, run commands, browse the
-web, and render its answers as charts, tables, and documents.
+zanto is a desktop app (and a CLI) built in Rust and Tauri. Point it at a
+provider key — or a model running locally — and it becomes an assistant that can
+read and edit your files, run commands, browse the web, and render its answers as
+charts, tables, and documents.
 
 The whole thing runs on your machine and talks **directly** to whichever model
-you pick. There's no zanto account, no relay, no telemetry.
-
-## What makes it different
+you pick. No zanto account, no relay, no telemetry.
 
 - **You own the stack.** Your API key lives in the OS keychain (or an env var).
   Prefer fully offline? Point zanto at local **Ollama** and nothing leaves your
@@ -38,18 +39,45 @@ you pick. There's no zanto account, no relay, no telemetry.
 - **Sessions that survive.** SQLite-backed, crash-safe, resumable, with automatic
   summarization so long conversations stay in budget.
 
+## Apps on the same engine
+
+The part I'm most excited about: the same private engine hosts **focused apps**.
+The first is **Personal Finance** — point it at statements and files on your disk
+and it tracks transactions, budgets, accounts, and net worth, all locally. No
+bank login, no cloud sync, no data broker in the middle. Your money data is just
+files on your machine that an assistant can reason about, on your terms.
+
+That's the bet behind zanto: a privacy-first base that real apps can stand on.
+Personal Finance is the first; it won't be the last.
+
+## Why "private" actually means something here
+
+A lot of products say "private." For zanto it's structural, not a policy page:
+
+- Prompts go **only** to the provider you configure — or to a model on your own
+  machine. There's no zanto server in the path.
+- File and shell access is **permission-gated** every time, not granted once and
+  forgotten.
+- Telemetry is **off**, because there's nothing to phone home to.
+
+A technical user can set this up for a non-technical parent or friend and hand
+them an AI that genuinely keeps their files to themselves.
+
 ## Honest caveats
 
-v1 builds are **unsigned**. macOS will ask you to right-click → Open the first
-time; Windows SmartScreen will want a "Run anyway." There's **no auto-update**
-yet — you grab a new build when one ships. Code signing and an updater are the
-first things on the list after launch.
+Early builds aren't notarized yet. The **macOS** build is **ad-hoc signed**, so
+it opens with a one-time right-click → **Open** — no Terminal command. There are
+two macOS downloads: pick **Apple Silicon** or **Intel**. **Windows** isn't
+signed yet, so SmartScreen will want a "Run anyway." There's **no auto-update**
+yet — you grab a new build when one ships. Developer-ID signing, notarization,
+and an updater are the first things on the list.
 
 ## Try it
 
-Download for your platform from the [latest release](https://github.com/satyamyadav/zanto-rust/releases/latest), set a
-provider key or fire up Ollama, and ask it something about your own files. If you
-build something neat — or hit something broken — the
+Download for your platform from the [latest release](https://github.com/satyamyadav/zanto-rust/releases/latest),
+set a provider key or fire up Ollama, and ask it something about your own files —
+or open Personal Finance and point it at a statement. If you build something neat
+— or hit something broken — the
 [repo](https://github.com/satyamyadav/zanto-rust) is open.
 
 More soon.
