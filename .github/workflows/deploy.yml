@@ -25,6 +25,9 @@ jobs:
       - name: Build with Astro
         uses: withastro/action@v3
         # Uses pnpm if a pnpm-lock.yaml is present, otherwise npm.
+        with:
+          # pnpm 11 requires Node >= 22.13; the action defaults to Node 20.
+          node-version: 22
 
   deploy:
     needs: build
