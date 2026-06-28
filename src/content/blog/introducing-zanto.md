@@ -47,7 +47,7 @@ first things on the list after launch.
 
 ## Try it
 
-Download for your platform on the [download page](/zanto-site/download), set a
+Download for your platform from the [latest release](https://github.com/satyamyadav/zanto-rust/releases/latest), set a
 provider key or fire up Ollama, and ask it something about your own files. If you
 build something neat — or hit something broken — the
 [repo](https://github.com/satyamyadav/zanto-rust) is open.

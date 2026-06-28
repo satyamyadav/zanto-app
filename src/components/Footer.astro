@@ -6,7 +6,7 @@ import { SITE, href } from "../lib/site";
   <div class="mx-auto flex max-w-5xl flex-col items-center justify-between gap-3 px-5 py-8 text-sm text-white/50 sm:flex-row">
     <p>© 2026 {SITE.name}. MIT licensed.</p>
     <div class="flex items-center gap-5">
-      <a class="hover:text-white" href={href("/download")}>Download</a>
+      <a class="hover:text-white" href={SITE.releasesLatest} target="_blank" rel="noopener">Download</a>
       <a class="hover:text-white" href={href("/blog")}>Blog</a>
       <a class="hover:text-white" href={SITE.repo} target="_blank" rel="noopener">GitHub</a>
     </div>
