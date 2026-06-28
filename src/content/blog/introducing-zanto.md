@@ -25,6 +25,8 @@ charts, tables, and documents.
 The whole thing runs on your machine and talks **directly** to whichever model
 you pick. No zanto account, no relay, no telemetry.
 
+![zanto chat answering with a donut chart and a summary table](/zanto-app/shots/chat-chart.png)
+
 ```
             YOUR MACHINE                         │   ELSEWHERE
                                                  │
@@ -80,6 +82,15 @@ Personal Finance is the first; it won't be the last.
    │  models · tools · permissions · sessions · store │     local-first core
    └─────────────────────────────────────────────────┘
 ```
+
+Point Personal Finance at a statement and it imports and categorizes the
+transactions — all locally:
+
+![Personal Finance importing and categorizing a bank statement](/zanto-app/shots/finance-import.png)
+
+…and rolls them up into a dashboard with net worth, spending, and top categories:
+
+![Finance dashboard showing net worth, a six-month spending chart, and top categories](/zanto-app/shots/dashboard.png)
 
 ## Why "private" actually means something here
 
